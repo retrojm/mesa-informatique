@@ -1,0 +1,17 @@
+# Instructions pour le robot d'archivage de Wayback Machine (archive.org)
+User-agent: ia_archiver
+Disallow: /
+
+# Instructions pour tous les autres robots (y compris Google, Bing, etc.)
+User-agent: *
+Disallow: /admin/     # Si vous avez une section admin que vous souhaitez masquer
+Disallow: /cgi-bin/   # Répertoire commun souvent exclu
+# Si vous n'avez pas d'autres répertoires spécifiques à interdire au niveau racine
+# pour "tous les robots", vous n'avez pas besoin de "Allow: /" ici,
+# car tout ce qui n'est pas "Disallow" est implicitement autorisé.
+# Cependant, si vous aviez un "Disallow: /quelquechose/" puis vouliez explicitement
+# autoriser une sous-partie, "Allow:" serait utile.
+# Pour la simplicité et la clarté, si seul /admin/ et /cgi-bin/ sont à exclure pour *,
+# la ligne "Allow: /" n'est pas strictement nécessaire.
+
+Sitemap: https://www.mesa-informatique.fr/sitemap.xml
