@@ -3687,3 +3687,49 @@
     opacity: 0.5;
     z-index: 0; /* Pour s'assurer qu'elle ne passe pas au-dessus d'autres éléments cliquables si besoin */
 }
+/* Conteneur du logo */
+.logo a {
+    display: flex;
+    align-items: center; /* Aligne l'image et le texte verticalement au centre */
+    text-decoration: none; /* Enlève le soulignement du lien */
+    font-family: "Montserrat", Helvetica, sans-serif; /* À adapter selon votre police */
+    font-weight: 700;
+    font-size: 1.2rem; /* Ajustez la taille du texte ici */
+    color: #ffffff; /* Couleur par défaut du texte MESA */
+}
+
+/* Image du logo */
+.logo img {
+    margin-right: 10px; /* Espace entre l'image et le texte */
+    display: block;
+}
+
+/* Partie colorée du texte (INFORMATIQUE) */
+.logo .highlight {
+    color: #F06862;
+}
+
+/* Optionnel : Effet au survol */
+.logo a:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+/* --- Correction SEO : H2 avec le look du H3 --- */
+h2.h2-v2 {
+    color: #555; /* Couleur grise du h3 d'origine */
+    font-family: "Montserrat", Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem; /* Taille typique d'un h3 de ton template */
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    margin-bottom: 1.5em;
+    line-height: 1.5;
+}
+
+/* Ajustement pour mobile */
+@media screen and (max-width: 736px) {
+    h2.h2-v2 {
+        font-size: 1.1rem;
+        margin-bottom: 1em;
+    }
+}

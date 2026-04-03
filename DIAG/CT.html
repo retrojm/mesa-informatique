@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport de Contrôle Technique PC</title>
+    <style>
+        :root {
+            --blue-main: #2c3e50;
+            --section-bg: #f8f9fa;
+            --border: #bdc3c7;
+            --font-size: 10.5px; /* Taille unique pour tout le document */
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #525659;
+            color: #2c3e50;
+            font-size: var(--font-size);
+        }
+
+        /* Format A4 strict pour impression */
+        .page {
+            width: 210mm;
+            height: 296mm; /* Légèrement réduit pour éviter le débordement */
+            margin: 5px auto;
+            padding: 10mm 12mm;
+            background: white;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--blue-main);
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        h1 { margin: 0; font-size: 20px; text-transform: uppercase; }
+        
+        .header-info { text-align: right; line-height: 1.5; }
+        .header-info input { font-size: var(--font-size); padding: 2px; width: 140px; }
+
+        .section {
+            border: 1px solid var(--border);
+            margin-bottom: 8px;
+            border-radius: 2px;
+        }
+
+        .section-title {
+            background-color: var(--blue-main);
+            color: white;
+            padding: 4px 10px;
+            font-weight: bold;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .row { display: flex; padding: 5px 10px; gap: 15px; align-items: center; }
+        .col { flex: 1; display: flex; align-items: center; }
+        
+        label { font-weight: bold; margin-right: 5px; white-space: nowrap; }
+        
+        input[type="text"], select, textarea {
+            font-family: inherit;
+            font-size: var(--font-size);
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 2px;
+        }
+
+        input[type="text"]:focus { border-bottom-color: var(--blue-main); outline: none; }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px 10px;
+            padding: 6px 10px;
+            background-color: var(--section-bg);
+        }
+
+        .check-item { display: flex; align-items: center; cursor: pointer; }
+        .check-item input { margin-right: 5px; margin-top: 0; }
+
+        /* Correction spécifique Stockage */
+        .storage-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 10px;
+            border-top: 1px solid #eee;
+        }
+
+        textarea {
+            width: 100%;
+            height: 40px; /* Hauteur ajustée pour la page unique */
+            border: 1px solid #eee;
+            padding: 5px;
+            resize: none;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+
+        .footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-top: 10px;
+        }
+
+        .sig-box {
+            width: 240px;
+            height: 70px;
+            border: 1px solid var(--border);
+            text-align: center;
+            position: relative;
+        }
+
+        .sig-label { font-size: 9px; color: #7f8c8d; position: absolute; top: 2px; left: 5px; }
+        .signature-name { 
+            margin-top: 20px;
+            font-family: 'Brush Script MT', cursive; 
+            font-size: 22px; 
+            color: #1a2a3a;
+        }
+
+        .no-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        @media print {
+            body { background: white; }
+            .page { margin: 0; box-shadow: none; width: 100%; height: 100%; padding: 8mm 10mm; }
+            .no-print { display: none; }
+            textarea { border: 1px solid transparent; }
+        }
+    </style>
+</head>
+<body>
+
+<button class="no-print" onclick="window.print()">Générer le PDF</button>
+
+<div class="page">
+    <header>
+        <div>
+            <h1>Mi Contrôle Technique PC</h1>
+            <div style="font-size: 11px; margin-top: 2px;">Rapport d'intervention technique professionnel</div>
+        </div>
+        <div class="header-info">
+            Technicien : <input type="text" value="Votre Nom"><br>
+            Date : <input type="date" id="currentDate">
+        </div>
+    </header>
+
+    <div class="section">
+        <div class="section-title">0 Identification du matériel</div>
+        <div class="row">
+            <div class="col"><label>Client :</label><input type="text" style="flex:2"></div>
+            <div class="col" style="flex:0; min-width: 180px; justify-content: flex-end;">
+                <div class="check-item"><input type="checkbox"> PC fixe &nbsp;&nbsp;</div>
+                <div class="check-item"><input type="checkbox"> Portable</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"><label>Marque / Modèle :</label><input type="text"></div>
+            <div class="col"><label>N° de série :</label><input type="text"></div>
+        </div>
+        <div class="row">
+            <div class="col"><label>OS :</label><input type="text" value="Windows 11"></div>
+            <div class="col"><label>Motif :</label><input type="text"></div>
+        </div>
+        <div class="checkbox-group">
+            <div class="check-item"><input type="checkbox"> Données sauvegardées (Client)</div>
+            <div class="check-item"><input type="checkbox"> Licences officielles (Windows/Office)</div>
+            <div class="check-item"><input type="checkbox"> Prestation effectuée / <input type="checkbox"> Refus</div>
+        </div>
+        <div class="row" style="padding-top:2px;">
+            <label>Mots de passe fournis :</label>
+            <div class="check-item"><input type="checkbox"> Windows &nbsp;&nbsp;</div>
+            <div class="check-item"><input type="checkbox"> Microsoft &nbsp;&nbsp;</div>
+            <div class="check-item"><input type="checkbox"> Mail</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">1 Inspection matérielle</div>
+        <div class="checkbox-group">
+            <div class="check-item"><input type="checkbox"> Vidage condensateurs OK</div>
+            <div class="check-item"><input type="checkbox"> Châssis / Câblage OK</div>
+            <div class="check-item"><input type="checkbox"> Ports USB fonctionnels</div>
+            <div class="check-item"><input type="checkbox"> HDMI / DP / VGA OK</div>
+            <div class="check-item"><input type="checkbox"> RJ45 OK</div>
+            <div class="check-item"><input type="checkbox"> Ventilation propre / silencieuse</div>
+            <div class="check-item"><input type="checkbox"> Aucune odeur ou bruit suspect</div>
+            <div class="check-item"><input type="checkbox"> Écran : OK / Défaut visuel</div>
+            <div class="check-item">Batterie : <input type="checkbox" style="margin-left:5px"> OK / <input type="checkbox"> Usée</div>
+        </div>
+        <div class="row">
+            <div class="col"><label>Santé batterie :</label><input type="text" style="width:40px" placeholder="%"> &nbsp; <div class="check-item"><input type="checkbox"> À remplacer</div></div>
+            <div class="col"><label>Remarques :</label><input type="text"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">2 & 3 Démarrage, Stockage & Stabilité</div>
+        <div class="checkbox-group" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="check-item"><input type="checkbox"> CPU / Tensions OK</div>
+            <div class="check-item"><input type="checkbox"> RAM (Qté correcte)</div>
+            <div class="check-item"><input type="checkbox"> Temp. au repos OK</div>
+            <div class="check-item"><input type="checkbox"> BIOS/UEFI cohérent</div>
+        </div>
+        <div class="storage-row">
+            <label>Stockage :</label>
+            <div class="check-item"><input type="checkbox"> HDD /</div>
+            <div class="check-item"><input type="checkbox"> SSD</div>
+            <label style="margin-left:15px">SMART :</label>
+            <select style="width:70px"><option>Bon</option><option>Prudence</option><option>Mauvais</option></select>
+            <div class="check-item" style="margin-left:15px"><input type="checkbox"> Pas de secteurs défectueux</div>
+        </div>
+        <div class="checkbox-group" style="border-top: 1px solid #eee;">
+            <div class="check-item"><input type="checkbox"> Test RAM (Aucune erreur)</div>
+            <div class="check-item"><input type="checkbox"> Test CPU / GPU OK</div>
+            <div class="check-item"><input type="checkbox"> Test Alimentation OK</div>
+            <div class="check-item"><input type="checkbox"> Températures en charge OK</div>
+            <div class="check-item"><input type="checkbox"> Aucune instabilité</div>
+            <div class="check-item"><label>Durée test :</label><input type="text" style="width:30px"> min</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">4, 5 & 6 Vérifications Systèmes & Réseau</div>
+        <div class="checkbox-group">
+            <div class="check-item"><input type="checkbox"> chkdsk / scan OK</div>
+            <div class="check-item"><input type="checkbox"> sfc /scannow OK</div>
+            <div class="check-item"><input type="checkbox"> DISM RestoreHealth</div>
+            <div class="check-item"><input type="checkbox"> Démarrage normal / Stable</div>
+            <div class="check-item"><input type="checkbox"> Pilotes / CG à jour</div>
+            <div class="check-item"><input type="checkbox"> Analyse Antivirus faite</div>
+            <div class="check-item"><input type="checkbox"> Malware / PUP supprimés</div>
+            <div class="check-item"><input type="checkbox"> Wi-Fi / Ethernet OK</div>
+            <div class="check-item"><input type="checkbox"> Webcam / Son / Bluetooth</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">7 & 8 Finalisation & Validation finale</div>
+        <div class="checkbox-group">
+            <div class="check-item"><input type="checkbox"> Windows Update OK</div>
+            <div class="check-item"><input type="checkbox"> Point de restauration créé</div>
+            <div class="check-item"><input type="checkbox"> Fichiers temporaires nettoyés</div>
+            <div class="check-item"><input type="checkbox"> Confidentialité réglée</div>
+            <div class="check-item"><input type="checkbox"> Nettoyage physique (Tour/Écran)</div>
+            <div class="check-item"><input type="checkbox"> Prêt à la restitution</div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label>Santé globale :</label>
+                <select style="font-weight: bold;">
+                    <option>⭐⭐⭐⭐⭐ (Excellent)</option>
+                    <option>⭐⭐⭐⭐ (Très Bon)</option>
+                    <option>⭐⭐⭐ (Correct)</option>
+                    <option>⭐⭐ (Moyen)</option>
+                    <option>⭐ (Mauvais)</option>
+                </select>
+            </div>
+            <div class="col"><label>Prochaine maintenance :</label><input type="text" placeholder="Mois / Année"></div>
+        </div>
+        <div style="padding: 2px 10px 8px 10px; border-top: 1px solid #eee;">
+            <label>Interventions notables & Conseils :</label>
+            <textarea></textarea>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div style="width: 55%; font-size: 9.5px; line-height: 1.3; color: #7f8c8d;">
+            <strong>Note :</strong> Rapport valable à la date de l'intervention. Les identifiants fournis ont été supprimés après les tests. La sauvegarde des données reste une responsabilité client.
+        </div>
+        <div class="sig-box">
+            <span class="sig-label">Signature du technicien :</span>
+            <div class="signature-name">Votre Signature</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Met la date du jour par défaut
+    document.getElementById('currentDate').valueAsDate = new Date();
+</script>
+
+</body>
+</html>
